@@ -155,13 +155,16 @@ class ArxivPaper:
             if match:
                 conclusion = match.group(0)
         llm = get_llm()
-        prompt = """Given the title, abstract, introduction and the conclusion (if any) of a paper in latex format, generate a one-sentence TLDR summary in __LANG__:
-        
-        \\title{__TITLE__}
-        \\begin{abstract}__ABSTRACT__\\end{abstract}
-        __INTRODUCTION__
-        __CONCLUSION__
-        """
+        prompt = """You are an expert research summarizer. Given the title, abstract, introduction, and conclusion (if any) of a scientific paper in LaTeX format, generate a single-sentence TLDR summary that captures the main contribution or insight of the paper in __LANG__:
+            \\title{__TITLE__}
+            \\begin{abstract}
+            __ABSTRACT__
+            \\end{abstract}
+            
+            __INTRODUCTION__
+
+            __CONCLUSION__
+            """
         prompt = prompt.replace('__LANG__', llm.lang)
         prompt = prompt.replace('__TITLE__', self.title)
         prompt = prompt.replace('__ABSTRACT__', self.summary)
