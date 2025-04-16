@@ -10,8 +10,8 @@ class LLM:
             self.llm = OpenAI(api_key=api_key, base_url=base_url)
         else:
             self.llm = Llama.from_pretrained(
-                repo_id="Qwen/Qwen2.5-3B-Instruct-GGUF",
-                filename="qwen2.5-3b-instruct-q4_k_m.gguf",
+                repo_id="TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF",
+	            filename="tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
                 n_ctx=5_000,
                 n_threads=4,
                 verbose=False,
